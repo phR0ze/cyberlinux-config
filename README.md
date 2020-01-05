@@ -1,2 +1,27 @@
-# cyberlinux-config
+cyberlinux-config
+====================================================================================================
+[![build-badge](https://travis-ci.com/phR0ze/cyberlinux-config.svg?branch=master)](https://travis-ci.com/phR0ze/cyberlinux-config)
+[![license-badge](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 cyberlinux configuration files
+
+* [Contribute](#contribute)
+  * [Git-Hook Version Increment](#git-hook-version-increment)
+* [License](#license)
+
+## Contribute <a name="Contribute"/></a>
+Pull requests are always welcome.  However understand that they will be evaluated purely on whether
+or not the change fits with my goals/ideals for the project.
+
+### Git-Hook Version Increment <a name="git-hook-version-increment"/></a>
+Enable the githooks to have automatic version increments
+
+```bash
+cd ~/Projects/cyberlinux-config
+git config core.hooksPath .githooks
+```
+
+## License <a name="license"/></a>
+Licensed under either of:
+ * MIT license [LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT
+ * Apache License, Version 2.0 [LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0
