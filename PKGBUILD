@@ -1,5 +1,5 @@
 #MIT License
-#Copyright (c) 2017-2019 phR0ze
+#Copyright (c) 2017-2020 phR0ze
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@ pkgname=(
     'cyberlinux-desktop-config'   # shell
     'cyberlinux-laptop-config'    # laptop
 )
-pkgver=0.0.4
+pkgver=0.0.5
 pkgrel=1
 pkgdesc='Configuration files for cyberlinux'
 arch=('any')
