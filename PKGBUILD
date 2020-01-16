@@ -32,7 +32,7 @@ pkgname=(
     'cyberlinux-desktop-config'   # shell
     'cyberlinux-laptop-config'    # laptop
 )
-pkgver=0.0.6
+pkgver=0.0.7
 pkgrel=1
 pkgdesc='Configuration files for cyberlinux'
 arch=('any')

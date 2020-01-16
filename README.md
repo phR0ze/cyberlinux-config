@@ -1,9 +1,16 @@
 cyberlinux-config
-====================================================================================================
 [![build-badge](https://travis-ci.com/phR0ze/cyberlinux-config.svg?branch=master)](https://travis-ci.com/phR0ze/cyberlinux-config)
 [![license-badge](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+====================================================================================================
 
-cyberlinux configuration files
+<img align="left" width="48" height="48" src="https://raw.githubusercontent.com/phR0ze/cyberlinux/master/art/logo_256x256.png">
+<b>cyberlinux-config</b> provides a home for all the configuration files, data files and
+customizations being maintained for the <b>cyberlinux project</b>.
+
+### Disclaimer
+***cyberlinux-config*** comes with absolutely no guarantees or support of any kind. It is to be used at
+your own risk.  Any damages, issues, losses or problems caused by the use of ***cyberlinux-config*** are
+strictly the responsiblity of the user and not the developer/creator of ***cyberlinux-config***.
 
 * [Contribute](#contribute)
   * [Git-Hook Version Increment](#git-hook-version-increment)
