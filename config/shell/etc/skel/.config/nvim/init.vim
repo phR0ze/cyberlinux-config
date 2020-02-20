@@ -1,5 +1,5 @@
 "MIT License
-"Copyright (c) 2018 phR0ze
+"Copyright (c) 2020 phR0ze
 "
 "Permission is hereby granted, free of charge, to any person obtaining a copy
 "of this software and associated documentation files (the 'Software'), to deal
@@ -19,118 +19,100 @@
 "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 "SOFTWARE.
 
-" General settings
+augroup GeneralSettings
+  autocmd!
+  set title                     " Sets the window title to your current buffer name
+  set encoding=UTF-8            " Required for vim-devicons to work correctly
+  set autochdir                 " Automatically switch working directory to current file
+  set backspace=2               " Configure backspace to work as normal same as =indent,eol,start
+  set clipboard=unnamedplus     " Set all yanks to be copied to register * as well as register +
+  set formatoptions+=tqw        " Text formatting, a=auto formatting for t=text and w=paragraphs
+  set nobackup                  " Don't make a backup of a file when overwriting it
+  set noerrorbells              " Turn off incessant beeping
+
+  " Search
+  set nohlsearch                " Don't highlight matches with last search pattern
+  set ignorecase                " Ignore case in search patterns
+  set smartcase                 " With ignorecase this searches case sensitive when capital is given
+
+  " Set numbering/status
+  set number			              " Shows line numbers
+  set ruler 			              " Shows current position (row and column) at the bottom of srceen
+
+  " Set tabbing/indenting
+  set tabstop=2		              " How many columns a tab counts for
+  set shiftwidth=2	            " Specifies how many columns text is indented with the rindent operations << and >>
+  set softtabstop=2             " How many columns a tab counts for, only used when expandtab is not set
+  set expandtab		              " Hitting tab in insert mode will produce the appropriate number of spaces
+  set cindent                   " Enables automatic C program indenting
+  set autoindent                " Enables automatic C program indenting
+  set smartindent		            " Indents according to blocks of code, 'nosmartindent'
+
+  set showmatch		              " When typing a closing parenthesis, bracket, or brace, shows match
+  set showmode                  " Show if you are in insert/command mode at the bottom of the screen
+  set spell spelllang=en_us     " Set spelling options
+  set nospell                   " Turn spelling off by default
+  set textwidth=100	            " Maximum line length before wrapping; 0 means don't do this
+  set wrapmargin=10	            " When width 0, this wraps if within this many spaces from right margin
+  set wildmode=longest,list     " Sets tab completion for command line similar to bash
+augroup END
+
+" Vim-Plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" https://github.com/EricFalkenberg/dotfiles/blob/master/.vimrc
-" https://github.com/zeorin/dotfiles/blob/e01cebf/.vimrc#L864-L900
-" https://github.com/ryanoasis/vim-devicons/issues/158
-" https://github.com/0phoff/DotFiles/blob/master/Vim/neovim.vim#L104-L137
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set title                         " Sets the window title to your current buffer name
-set mouse=a                       " Enable mouse for all modes
-set encoding=UTF-8                " Required for vim-devicons to work correctly
-set autochdir                     " Automatically switch working directory to current file
-set backspace=2                   " Configure backspace to work as normal same as =indent,eol,start
-set clipboard=unnamedplus         " Set all yanks to be copied to register * as well as register +
-set formatoptions+=tqw            " Text formatting, a=auto formatting for t=text and w=paragraphs
-set nobackup                      " Don't make a backup of a file when overwriting it
-set noerrorbells                  " Turn off incessant beeping
-set showmatch		                  " When typing a closing parenthesis, bracket, or brace, shows match
-set showmode                      " Show if you are in insert mode or command mode at the bottom of the screen
-set wildmode=longest,list         " Sets tab completion for command line similar to bash
-set shortmess=a                   " Use short messaging where possible, helps in shell call outs
-
-" Search
-set nohlsearch                    " Don't highlight matches with last search pattern
-set ignorecase                    " Ignore case in search patterns
-set smartcase                     " Works with ignorecase to only search case sensitive when capital is given
-
-" Set numbering/position/status
-set number			                  " Shows line numbers
-set ruler 			                  " Shows current position (row and column) at the bottom of srceen
-
-" Set tabbing/indenting/wrapping
-set tabstop=2		                  " How many columns a tab counts for
-set shiftwidth=2	                " Specifies how many columns text is indented with the rindent operations << and >>
-set softtabstop=2                 " How many columns a tab counts for, only used when expandtab is not set
-set cindent                       " Enables automatic C program indenting
-set autoindent                    " Enables automatic C program indenting
-set smartindent		                " Indents according to blocks of code, 'nosmartindent'
-set expandtab		                  " Hitting tab in insert mode will produce the appropriate number of spaces
-set textwidth=100	                " Maximum line length before wrapping; 0 means don't do this
-set wrapmargin=10	                " wraps if within this many spaces from right margin; doesn't work unless text width is 0
-"set cc=80                         " set an 80 column border for good coding style
-
-" Text spelling
-set spell spelllang=en_us         " Set spelling options
-set nospell                       " Turn spelling off by default
-
-" Plugin management settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible                                  " Disable old VI support, required by Vundle
-filetype off                                      " Required for Vundle
-set rtp+=~/.config/nvim/plugins/Vundle.vim        " Add Vundle to runtime path
-call vundle#begin('~/.config/nvim/plugins')       " Initialize Vundle with correct plugin path
-Plugin 'VundleVim/Vundle.vim'                     " Manage Vundle with Vundle
-
-" ColorSchemes
-Plugin 'vim-scripts/CycleColor' 			            " Color scheme cycler
-Plugin 'ajmwagar/vim-deus' 				                " deus
-Plugin 'YorickPeterse/happy_hacking.vim'          " happy_hacking
-Plugin 'w0ng/vim-hybrid' 				                  " hybrid
-Plugin 'kristijanhusak/vim-hybrid-material'       " hybrid_material
-Plugin 'nanotech/jellybeans.vim' 			            " jellybeans
-Plugin 'dikiaap/minimalist' 				              " minimalist
-Plugin 'marcopaganini/termschool-vim-theme'       " termschool
+call plug#begin()
 
 " Interface
-Plugin 'scrooloose/nerdtree'                      " File explorer sidebar
-"Plugin 'itchyny/lightline.vim'                   " Faster than airline, http://newbilityvery.github.io/2017/08/04/switch-to-lightline/
-"Plugin 'Xuyuanp/nerdtree-git-plugin'             " Seems to break devicons in NerdTree
-"Plugin 'vim-airline/vim-airline'                  " Awesome status bar at bottom with git support
-"Plugin 'vim-airline/vim-airline-themes'           " Vim Airline themes
-Plugin 'ryanoasis/vim-devicons'                   " Sweet folder/file icons for nerd tree
-"Plugin 'colorize-devicons', {'pinned' : 1}        " Custom local plugin for colorizing devicons
+Plug 'vim-airline/vim-airline'              " Awesome status bar at bottom with git support
+Plug 'vim-airline/vim-airline-themes'       " Vim Airline themes
 
-" Git
-Plugin 'airblade/vim-gitgutter'         
+" ColorSchemes
+Plug 'vim-scripts/CycleColor' 			        " Color scheme cycler
+Plug 'ajmwagar/vim-deus' 				            " deus
+Plug 'YorickPeterse/happy_hacking.vim'      " happy_hacking
+Plug 'w0ng/vim-hybrid' 				              " hybrid
+Plug 'kristijanhusak/vim-hybrid-material'   " hybrid_material
+Plug 'nanotech/jellybeans.vim' 			        " jellybeans
+Plug 'dikiaap/minimalist' 				          " minimalist
+Plug 'marcopaganini/termschool-vim-theme'   " termschool
 
-" Syntax
-Plugin 'stephpy/vim-yaml'                         " yaml
-Plugin 'kurayama/systemd-vim-syntax'              " systemd
+" Syntax highlighting
+Plug 'stephpy/vim-yaml'                     " yaml
+Plug 'kurayama/systemd-vim-syntax'          " systemd
 
-call vundle#end()                                 " Finalize plugin management section
-filetype plugin indent on                         " Turn file type and indenting back on
+" Word processing
+Plug 'junegunn/goyo.vim'                    " Allow for margins in vim, i.e. print layout
+ 
+call plug#end()
 
-" Filetype settings
+" File type settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Override filetype detection
-au BufNewFile,BufRead *.smali set filetype=smali
-au BufNewFile,BufRead *conkyrc set filetype=conkyrc
+augroup FiletypeSettings
+  autocmd!
 
-" Override file type configs
-au FileType make setl noexpandtab
-au FileType yaml setl ts=2 sw=2 sts=2
+  " Override filetype detection
+  au BufNewFile,BufRead *.smali set filetype=smali
+  au BufNewFile,BufRead *conkyrc set filetype=conkyrc
 
-" DevIcons Settings
-" https://github.com/ryanoasis/vim-devicons/wiki/Extra-Configuration
+  " Override file type configs
+  au FileType make setl noexpandtab
+  au FileType vim setl foldmethod=marker
+  au FileType yaml setl ts=2 sw=2 sts=2
+augroup END
+
+" Vim-Airline settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set padding after/before glyph
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
+set laststatus=2                    " Always include status line at the bottom of the screen
+let g:airline_powerline_fonts = 1   " User powerline fonts for icons
+let g:airline_theme = 'deus'        " Set the airline theme
 
-" Decorate directories with folder icons
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-" NERDTree Settings
+" Goyo settings
+" Toggle on and off with :Goyo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Show hidden files
-let NERDTreeShowHidden = 1
+let g:goyo_width = 80               " Set width
+let g:goyo_height = 100             " Set height
+let g:goyo_linenr = 0               " Disable line numbers
 
-" Automatically delete the buffer of the file you just deleted
-let NERDTreeAutoDeleteBuffer = 1
-
-" Key mappings
+" Key Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " n Normal mode map. Defined using :nmap or nnoremap
 " i Insert mode map. Defined using :imap or inoremap
@@ -140,14 +122,22 @@ let NERDTreeAutoDeleteBuffer = 1
 " c Command-line mode map. Defined using :cmap or cnoremap
 " noremap ignores other mappings - always use this mode
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Toggle nerd tree with Ctrl+f
-map <C-f> :NERDTreeToggle<CR>
+let mapleader = ";"
+
+" Edit/source this config file
+nnoremap <Leader>ev :split $MYVIMRC<CR>
+nnoremap <Leader>sv :source $MYVIMRC<CR> 
+
+" Toggle Word processor mode
+nnoremap <Leader>gy :WP<CR>:Goyo<CR>
 
 " Move up/down by rows rather than by lines
-nnoremap k gk
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap j gj
+nnoremap k gk
 
 " Configure copy/paste and select all
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap <C-c> "+y
 nnoremap <C-v> "+p
 inoremap <C-v> <Esc>"+pa
@@ -160,51 +150,22 @@ set t_Co=256                                " Enable 256 colors for terminal mod
 set background=dark                         " Set vim color mode (dark or light)
 colorscheme deus                            " Set the color scheme
 
-" Colorize DevIcons
-" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+" Word processor mode
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! ColorizeDevicons(iconmap)
-  let colors = keys(a:iconmap)
-  augroup devicons_colors
-    autocmd!
-    for color in colors
+func! WordProcessorMode() 
+  setlocal formatoptions=1                  " Don't break lines after one-letter words
+  setlocal noexpandtab                      " Keep tabs and don't convert to spaces
+  setlocal wrap                             " Wrap text when it reaches the end
+  setlocal linebreak                        " Vim will break lines at sensible spaces
+  setlocal nolist                           " Disable list setting so that linebreak works
+  set complete+=s                           " Search thesaurus for a word to autocomplete
 
-      " Set up highlight group e.g. 'devicons_green'
-      exec 'autocmd FileType nerdtree,startify highlight devicons_'.color.
-        \ ' guifg=#'.g:devicons_colors[color][0].' ctermfg='.g:devicons_colors[color][1]
+  " Spelling key squences
+  " ]s    moves to the next spelling mistake
+  " [s    moves to the previous spelling mistake
+  " zg    add a word to your dictionary
+  " z=    to get vim to suggest spelling fixes, type the number and hit enter
+  setlocal spell spelllang=en_us            " Enable Vim's built in spell checking
 
-      " Match highlight group e.g. 'devicons_green' with icons set e.g. ['', '', '', '']
-      exec 'autocmd FileType nerdtree,startify syntax match devicons_'.color.
-        \ ' /\v'.join(a:iconmap[color], '|').'/ containedin=ALL'
-    endfor
-  augroup END
-endfunction
-
-" Color to icon set mapping
-"\'seagreen': ['', '', '', '', ''],
-let g:devicons_iconmap = {
-  \'lightgreen': ['', '', '', '', '', '', '', '', '', '', ''],
-  \'yellow': ['', '', ''],
-  \'orange': ['', '', '', 'λ', '', ''],
-  \'red': ['', '', '', '', '', '', '', '', ''],
-  \'magenta': [''],
-  \'violet': ['', '', '', ''],
-  \'blue': ['', '', '', '', '', '', '', '', '', '', '', '', ''],
-  \'cyan': ['', '', '', ''],
-  \'green': ['', '', '', '']
-\}
-
-" guifg in Xterm256 and ctermfg
-let g:devicons_colors = {
-  \'cyan'         : ['00ffff', '51'],
-  \'blue'         : ['0000ff', '21'],
-  \'violet'       : ['d787ff', '177'],
-  \'red'          : ['ff0000', '196'],
-  \'yellow'       : ['ffff00', '226'],
-  \'orange'       : ['ffaf00', '214'],
-  \'magenta'      : ['ff00ff', '201'],
-  \'green'        : ['00ff00', '46'],
-  \'lightgreen'   : ['87ff5f', '119']
-\}
-
-call ColorizeDevicons(g:devicons_iconmap)
+endfu
+com! WP call WordProcessorMode()
